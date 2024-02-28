@@ -1,6 +1,7 @@
 //import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:formvalidation/src/pages/registro_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -8,53 +9,62 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: <Widget>[
-        _crearFondo(context),
-        _loginForm(context),
-      ],
-    ));
+      body: Stack(
+        children: <Widget>[
+          _crearFondo(context),
+          _loginForm(context),
+        ],
+      ),
+    );
   }
 
   Widget _loginForm(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+    // Pass the context to _crearRegistroButton
+    var crearRegistroButton = _crearRegistroButton(context);
+
     return SingleChildScrollView(
-      child: Column(children: <Widget>[
-        SafeArea(
-          child: Container(
-            height: 180.0,
+      child: Column(
+        children: <Widget>[
+          SafeArea(
+            child: Container(
+              height: 180.0,
+            ),
           ),
-        ),
-        Container(
-          width: size.width * 0.85,
-          margin: EdgeInsets.symmetric(vertical: 60.0),
-          padding: EdgeInsets.symmetric(vertical: 50.0),
-          decoration: BoxDecoration(
+          Container(
+            width: size.width * 0.85,
+            margin: EdgeInsets.symmetric(vertical: 60.0),
+            padding: EdgeInsets.symmetric(vertical: 50.0),
+            decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(5.0),
               boxShadow: const <BoxShadow>[
                 BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 3.0,
-                    offset: Offset(0.0, 5.0),
-                    spreadRadius: 3.0)
-              ]),
-          child: Column(
-            children: <Widget>[
-              const Text('Ingreso', style: TextStyle(fontSize: 17.0)),
-              const SizedBox(height: 60.0),
-              _crearEmail(),
-              const SizedBox(height: 30.0),
-              _crearPassword(),
-              const SizedBox(height: 30.0),
-              _crearBoton(),
-              const SizedBox(height: 15.0), // Espaciado adicional
-              _crearRegistroButton(),
-            ],
-          ),
-        )
-      ]),
+                  color: Colors.black26,
+                  blurRadius: 3.0,
+                  offset: Offset(0.0, 5.0),
+                  spreadRadius: 3.0,
+                )
+              ],
+            ),
+            child: Column(
+              children: <Widget>[
+                const Text('Ingreso', style: TextStyle(fontSize: 17.0)),
+                const SizedBox(height: 60.0),
+                _crearEmail(),
+                const SizedBox(height: 30.0),
+                _crearPassword(),
+                const SizedBox(height: 30.0),
+                _crearBoton(),
+                const SizedBox(height: 15.0), // Espaciado adicional
+                crearRegistroButton,
+                const SizedBox(height: 15.0)
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -95,14 +105,18 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _crearRegistroButton() {
+// Función para crear el botón de registro
+ Widget _crearRegistroButton(BuildContext context) {
     return TextButton(
       onPressed: () {
-        // Aquí puedes agregar la lógica para ir a la pantalla de registro
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const registropage()),
+        );
       },
       child: const Text(
         'Registrarse',
-        style:  TextStyle(color: Colors.deepPurple, fontSize: 16.0),
+        style: TextStyle(color: Colors.deepPurple, fontSize: 16.0),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:formvalidation/src/pages/home_page.dart';
 import 'package:formvalidation/src/pages/login_page.dart';
+import 'package:formvalidation/src/pages/registro_page.dart';
+
 
 void main() => runApp(const MyApp());
 
@@ -16,6 +18,8 @@ class MyApp extends StatelessWidget {
       routes: {
         'login': (BuildContext context) => const LoginPage(),
         'home': (BuildContext context) => const Homepage(),
+        'registro': (BuildContext context) => const registropage(),
+
       },
     );
   }

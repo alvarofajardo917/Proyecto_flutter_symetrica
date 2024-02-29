@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-
 // ignore: camel_case_types
 class registropage extends StatelessWidget {
   const registropage({super.key});
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pantalla de Registro'),
       ),
-        body: const Padding(
+      body: const Padding(
         padding: EdgeInsets.all(16.0),
-       child: SingleChildScrollView( // Envuelve el Column con SingleChildScrollView
+        child: SingleChildScrollView(
+          // Envuelve el Column con SingleChildScrollView
           child: RegistroForm(),
         ),
       ),
@@ -37,10 +37,6 @@ class _RegistroFormState extends State<RegistroForm> {
   final _userdirrecionController = TextEditingController();
   final _usertelefonoController = TextEditingController();
 
-  
-
-
-
   // Puedes agregar más controladores para otros campos según sea necesario
 
   @override
@@ -60,7 +56,7 @@ class _RegistroFormState extends State<RegistroForm> {
             },
           ),
 
-           TextFormField(
+          TextFormField(
             controller: _userapellidoController,
             decoration: const InputDecoration(labelText: 'Apellido de usuario'),
             validator: (value) {
@@ -71,7 +67,7 @@ class _RegistroFormState extends State<RegistroForm> {
             },
           ),
 
-           TextFormField(
+          TextFormField(
             controller: _usercorreoController,
             decoration: const InputDecoration(labelText: 'Correo de usuario'),
             validator: (value) {
@@ -94,23 +90,42 @@ class _RegistroFormState extends State<RegistroForm> {
             },
           ),
 
-
-           TextFormField(
+          TextFormField(
             controller: _userdirrecionController,
-            decoration: const InputDecoration(labelText: 'Dirrecion de usuario'),
+            decoration:
+                const InputDecoration(labelText: 'Dirrecion de usuario'),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                     return 'Por favor, ingrese una Direccion de usuario';
+                return 'Por favor, ingrese una Direccion de usuario';
               }
               return null;
             },
           ),
 
-        
+          //Lista desplegable 
+          DropdownButtonFormField<String>(
+            decoration: const InputDecoration(labelText: 'Genero'),
+            value:
+                null, // Puedes establecerlo en null o en el valor inicial deseado
+            items: const [
+              DropdownMenuItem<String>(
+                value: 'Opción 1',
+                child: Text('Masculino'),
+              ),
+              DropdownMenuItem<String>(
+                value: 'Opción 2',
+                child: Text('Femenino'),
+              ),
+              // Agrega más opciones según sea necesario
+            ],
+            onChanged: (value) {
+              // Lógica cuando se selecciona una opción
+              print('Opción seleccionada: $value');
+              // Puedes agregar lógica adicional aquí, por ejemplo, almacenar el valor en una variable
+            },
+          ),
 
-
-          
-           TextFormField(
+          TextFormField(
             controller: _usertelefonoController,
             decoration: const InputDecoration(labelText: 'Telefono'),
             validator: (value) {
@@ -121,8 +136,6 @@ class _RegistroFormState extends State<RegistroForm> {
             },
           ),
 
-
-          
           // Puedes agregar más campos aquí según sea necesario
 
           SizedBox(height: 16.0),
@@ -140,6 +153,4 @@ class _RegistroFormState extends State<RegistroForm> {
       ),
     );
   }
-
-  
 }

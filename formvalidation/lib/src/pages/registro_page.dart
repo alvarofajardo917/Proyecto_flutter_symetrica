@@ -13,7 +13,9 @@ class registropage extends StatelessWidget {
       ),
         body: const Padding(
         padding: EdgeInsets.all(16.0),
-        child: RegistroForm(),
+       child: SingleChildScrollView( // Envuelve el Column con SingleChildScrollView
+          child: RegistroForm(),
+        ),
       ),
     );
   }
@@ -30,6 +32,15 @@ class _RegistroFormState extends State<RegistroForm> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _userapellidoController = TextEditingController();
+  final _usercorreoController = TextEditingController();
+  final _userdirrecionController = TextEditingController();
+  final _usertelefonoController = TextEditingController();
+
+  
+
+
+
   // Puedes agregar más controladores para otros campos según sea necesario
 
   @override
@@ -48,17 +59,70 @@ class _RegistroFormState extends State<RegistroForm> {
               return null;
             },
           ),
-          TextFormField(
-            controller: _passwordController,
-            obscureText: true,
-            decoration: const InputDecoration(labelText: 'Contraseña'),
+
+           TextFormField(
+            controller: _userapellidoController,
+            decoration: const InputDecoration(labelText: 'Apellido de usuario'),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Por favor, ingrese una contraseña';
+                return 'Por favor, ingrese un apelligo de usuario';
               }
               return null;
             },
           ),
+
+           TextFormField(
+            controller: _usercorreoController,
+            decoration: const InputDecoration(labelText: 'Correo de usuario'),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Por favor, ingrese un Correo ';
+              }
+              return null;
+            },
+          ),
+
+          TextFormField(
+            controller: _passwordController,
+            obscureText: true,
+            decoration: const InputDecoration(labelText: 'contraseña'),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Por favor, ingrese una Contraseña';
+              }
+              return null;
+            },
+          ),
+
+
+           TextFormField(
+            controller: _userdirrecionController,
+            decoration: const InputDecoration(labelText: 'Dirrecion de usuario'),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                     return 'Por favor, ingrese una Direccion de usuario';
+              }
+              return null;
+            },
+          ),
+
+        
+
+
+          
+           TextFormField(
+            controller: _usertelefonoController,
+            decoration: const InputDecoration(labelText: 'Telefono'),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Por favor, ingrese un Telefono ';
+              }
+              return null;
+            },
+          ),
+
+
+          
           // Puedes agregar más campos aquí según sea necesario
 
           SizedBox(height: 16.0),
@@ -76,4 +140,6 @@ class _RegistroFormState extends State<RegistroForm> {
       ),
     );
   }
+
+  
 }
